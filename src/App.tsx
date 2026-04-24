@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Home from './pages/Home'
-import Main from './pages/Main'
+
 
 function App() {
   const [show,setShow]= useState(false);
