@@ -8,6 +8,32 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      function checkDevice() {
+        if (window.innerWidth < 1024) {
+          document.body.innerHTML = `
+            <div style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              height:100vh;
+              font-family:sans-serif;
+              text-align:center;
+              padding:20px;
+            ">
+              <div>
+                <h1>Desktop Only</h1>
+                <p>This experience is crafted for larger screens.<br>
+                Please open it on a laptop or desktop.</p>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      checkDevice();
+      window.addEventListener("resize", checkDevice);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
