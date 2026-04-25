@@ -30,10 +30,10 @@ function App() {
   return (
     <div>
       <div
-        className={`h-screen w-screen flex items-center justify-center bg-pink-100 ${!show ? "block" : "hidden"}`}
+        className={`h-screen w-screen flex px-2 items-center relative justify-center bg-pink-100 ${!show ? "block" : "hidden"}`}
       >
-        <img src={desk_img} alt="" className="hidden md:block absolute z-10 h-full w-full object-cover" />
-        <img src={mob_img} alt="" className="md:hidden  absolute z-10 h-full w-full object-cover" />
+        <img src={desk_img} alt="" className="hidden md:block absolute z-10 h-screen w-screen object-cover" />
+        <img src={mob_img} alt="" className="md:hidden absolute z-10 h-full w-full object-cover" />
         <div className="h-98 w-98 gap-3 z-20 md:w-120 md:h-98 border-2 border-fuchsia-300 bg-pink-300/20 text-white backdrop-blur-2xl rounded-lg p-4 flex flex-col items- justify-center">
           <h2 className="text-6xl">Hi, Angel</h2>
           <p className="text-2xl">This is for an Angel That i met online</p>
