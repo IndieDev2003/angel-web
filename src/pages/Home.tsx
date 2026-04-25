@@ -1,11 +1,13 @@
-import video from '../assets/download.mp4'
+import desk_video from '../assets/download.mp4'
+import mob_video from '../assets/mob_download.mp4'
 
 function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black text-white">
-      <video src={video} autoPlay muted loop className="h-full w-full object-cover opacity-65 absolute z-10"></video>
+    <div className="bg-blend-soft-light flex items-center justify-center min-h-screen bg-black text-white">
+      <video src={desk_video} autoPlay muted loop className="md:block hidden h-full w-full object-cover opacity-65 absolute z-10"></video>
+      <video src={mob_video} autoPlay muted loop className="block md:hidden h-full w-full object-cover opacity-65 absolute z-10"></video>
     
-      <p className='z-20'>
+      <p className='z-20 p-2'>
         In a world where everything feels loud and uncertain, <br /> you arrived
         quietly—almost like a pause I didn’t know I needed. <br /> At first,
         there was distance, a little fear, <br /> two strangers standing on
