@@ -2,9 +2,9 @@ import desk_bg from "../assets/weather.mp4";
 
 interface IWeatherComp {
   name?: string;
-  time?: number;
+  time: number;
   temp?: number;
-  sunset?: number;
+  sunset: number;
   wind?: number;
   temp_max?: number;
   icon?: string;
@@ -28,8 +28,8 @@ function WeatherComp({
   // Format time to display day and time
 
   // Convert timestamps to Date objects
-  const timeDate = new Date((time ) * 1000);
-  const sunsetDate = new Date((sunset ) * 1000);
+  const timeDate = new Date((time) * 1000);
+  const sunsetDate = new Date((sunset) * 1000);
 
   const formattedTime = timeDate.toLocaleString("en-US", {
     weekday: "long",
