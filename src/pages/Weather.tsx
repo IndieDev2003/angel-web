@@ -9,10 +9,11 @@ function Weather() {
     isError,
   } = useQuery({
     queryKey: ["weather"],
-    queryFn: () => fetchWeather("Phillaur"),
+    queryFn: () => fetchWeather("New Delhi"),
+    
   });
 
-  if (isLoading) return <div>Loading Weather...</div>;
+  if (isLoading) return <LoadingWeather/>;
   if (isError) return <div>Error fetching weather</div>;
 
   return (
@@ -26,7 +27,7 @@ function Weather() {
         temp_max={weather?.main.temp}
         icon={weather?.weather[0].icon}
         greeting="Hello"
-        userName="Gagan"
+        userName="@Alpha001"
         main={weather?.weather[0].main}
       />
     </div>
@@ -34,3 +35,12 @@ function Weather() {
 }
 
 export default Weather;
+
+function LoadingWeather(){
+  return (
+    <div className="flex items-center justify-center text-3xl h-screen w-screen ">
+      <h1>Loading Weather</h1>
+      <div></div>
+    </div>
+  );
+}
