@@ -68,13 +68,13 @@ import { useEffect, useState } from "react";
 //   )
 // }
 
-
+type Cords ={
+  lat:number |string,
+  lon:number|string
+}
 
 function App() {
-  const [ cords,setCords  ]=useState({
-    lat:'',
-    lon:''
-  }) 
+  const [ cords,setCords  ]=useState<Cords>({lat:'',lon:''})
  useEffect(()=>{
   navigator.geolocation.getCurrentPosition((position)=>{
     setCords({
