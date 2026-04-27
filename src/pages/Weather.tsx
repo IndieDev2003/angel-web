@@ -1,15 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchWeather } from "../utils/axios";
 import WeatherComp from "../components/WeatherComp";
+import { useEffect, useState } from "react";
+
+type Cords = {
+  lat: number | string;
+  lon: number | string;
+};
 
 function Weather() {
+
+   const [ cords,setCords  ]=useState<Cords>({lat:'',lon:''})
+   useEffect(()=>{
+    navigator.geolocation.getCurrentPosition((position)=>{
+      setCords({
+        lat:position.coords.latitude,
+        lon:position.coords.longitude
+      })
+    })
+   })
+
   const {
     data: weather,
     isLoading,
     isError,
   } = useQuery({
     queryKey: ["weather"],
-    queryFn: () => fetchWeather("New Delhi"),
+    queryFn: () => fetchWeather({latitude:cords.lat,longitude:cords.lon}),
     
   });
 
