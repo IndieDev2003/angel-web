@@ -1,84 +1,31 @@
-// import { useEffect, useState } from "react";
-// import Home from "./pages/Home";
-// import mob_img from './assets/front_mob.jpg'
-// import desk_img from './assets/front_desk.jpg'
-// import { useEffect, useState } from "react";
+import Home from "./pages/Home";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Weather from "./pages/Weather";
-// import { useGeolocation } from "./utils/useGeolocation";
-// import WeatherComp from "./components/WeatherComp";
+import MessageBox from "./components/MessageBox";
 
-// function App() {
-//   const [show, setShow] = useState(false);
+export default function App() {
+  const url = useLocation()
+ 
 
-//   const onClickHandler = () => {
-//     setShow(!show);
-//     enterFullscreen()
-//   };
-
-//   const enterFullscreen = () => {
-//     const el = document.documentElement;
-
-//     if (el.requestFullscreen) {
-//       el.requestFullscreen();
-//     } else if (el.requestFullscreen) {
-//       el.requestFullscreen();
-//     } else if (el.requestFullscreen) {
-//       el.requestFullscreen();
-//     }
-//   };
-
-//   useEffect(() => {
-    
-//   }, []);
-
-//   // return (
-//   //   <div>
-//   //     <div
-//   //       className={`h-screen w-screen flex px-2 items-center relative justify-center bg-pink-100 ${!show ? "block" : "hidden"}`}
-//   //     >
-//   //       <img src={desk_img} alt="" className="hidden md:block absolute z-10 h-screen w-screen object-cover" />
-//   //       <img src={mob_img} alt="" className="md:hidden absolute z-10 h-full w-full object-cover" />
-//   //       <div className="h-98 w-98 gap-3 z-20 md:w-120 md:h-98 border-2 border-fuchsia-300 bg-pink-300/20 text-white backdrop-blur-2xl rounded-lg p-4 flex flex-col items- justify-center">
-//   //         <h2 className="text-6xl">Hi, Angel</h2>
-//   //         <p className="text-2xl">This is for an Angel That i met online</p>
-//   //         <p>
-//   //           just a site from my side for all those greatg momments, i do typo's
-//   //           alot so ignore them
-//   //         </p>
-//   //         <div>
-//   //           <button
-//   //             onClick={onClickHandler}
-//   //             className="px-4 py-2 border text-black rounded bg-amber-200"
-//   //           >
-//   //             Enter the Website
-//   //           </button>
-//   //         </div>
-//   //       </div>
-//   //     </div>
-
-//   //     <div className={`${!show ? "hidden" : "block"}`}>
-//   //       <Home />
-//   //     </div>
-//   //   </div>
-//   // );
-//   return(
-//     <div>
-//       <Weather/>
-//     </div>
-//   )
-// }
-
-
-
-function App() {
-
-  
   return (
     <div>
-      <Weather />
-      
+
+      <Routes>
+        <Route path="/" element={<MessageBox />} />
+        <Route path="/message" element={<Home/>}/>
+        <Route path="/weather" element={<Weather />} />
+      </Routes>
+
+     {
+      url.pathname!=='/' ?  <div className="fixed right-4 top-4 border border-white/20 flex gap-2 items-center p-1 backdrop-blur-3xl justify-center bg-red-  z-100 rounded-full">
+        <Link className="size-10 text-center bg-red-400/50 backdrop-blur-3xl text-white p-1.5 rounded-full" to={'/'}>H</Link>
+        <Link className="size-10 text-center bg-fuchsia-400/50 backdrop-blur-3xl text-white p-1.5 rounded-full" to={'/weather'}>W</Link>
+        <Link className="size-10 text-center bg-amber-400/50 backdrop-blur-3xl text-white p-1.5 rounded-full" to={'/message'}>M</Link>
+      </div>: <></>
+     }
     </div>
   );
 }
 
-export default App
+
+ 

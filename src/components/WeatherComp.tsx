@@ -1,4 +1,5 @@
 import desk_bg from "../assets/weather.mp4";
+import mob_bg from '../assets/mob_weather.mp4'
 
 interface IWeatherComp {
   name?: string;
@@ -49,14 +50,23 @@ function WeatherComp({
       {/* Background Image */}
       <video
         src={desk_bg}
-        className="absolute h-screen w-screen z-10 object-cover object-center blur-xs"
+        className="hidden md:block fixed  inset-0 w-full h-full object-cover blur- z-10"
         autoPlay
-         muted
-         loop
+        muted
+        loop
       ></video>
+      {/* Mobile Video */}
+      <video
+        src={mob_bg}
+        className="md:hidden block fixed inset-0 w-full h-full object-cover blur- z-10"
+        autoPlay
+        muted
+        loop
+      ></video>
+      
 
       {/* Main Weather Card */}
-      <div className="w-scren md:w-78 h-120 md:h-110 text-white border border-white/20 flex justify-between flex-col p-4 z-20 bg-gray-800/10 backdrop-blur-xs">
+      <div className="w-scren md:w-78 h-120 md:h-110 text-white border border-white/40 flex justify-between flex-col p-4 z-20 bg-gray-800/10 backdrop-blur-xs">
         {/* Header Section - City Name and Time */}
         <div>
           <h2 className="text-4xl font-bold">{name}</h2>

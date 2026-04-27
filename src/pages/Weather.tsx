@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchWeather } from "../utils/axios";
+import { fetchWeather, loadLocation } from "../utils/axios";
 import WeatherComp from "../components/WeatherComp";
 import { useEffect, useState } from "react";
 
@@ -9,32 +9,50 @@ type Cords = {
 };
 
 function Weather() {
+  const [cords, setCords] = useState<Cords>({ lat: "", lon: "" });
+  const [hasLocation, setHasLocation] = useState(false);
+  const [cityName] = useState("London"); // Default fallback city
 
-   const [ cords,setCords  ]=useState<Cords>({lat:'',lon:''})
-   useEffect(()=>{
-    navigator.geolocation.getCurrentPosition((position)=>{
-      setCords({
-        lat:position.coords.latitude,
-        lon:position.coords.longitude
+  useEffect(() => {
+    loadLocation()
+      .then((location) => {
+        setCords({
+          lat: location.latitude,
+          lon: location.longitude,
+        });
+        setHasLocation(true);
       })
-    })
-   })
+      .catch(() => {
+        // Location access denied, use city name instead
+        console.log("Location access denied or unavailable, using city name");
+        setHasLocation(true);
+      });
+  }, []);
 
   const {
     data: weather,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["weather"],
-    queryFn: () => fetchWeather({latitude:cords.lat,longitude:cords.lon}),
-    
+    queryKey: ["weather", cords.lat, cords.lon, cityName],
+    queryFn: () =>
+      fetchWeather({
+        latitude: cords.lat || undefined,
+        longitude: cords.lon || undefined,
+        cityName: !cords.lat ? cityName : undefined,
+      }),
+    enabled: hasLocation,
   });
 
-  if (isLoading) return <LoadingWeather/>;
-  if (isError) return <div>Error fetching weather</div>;
+  
+
+  if (isLoading) return <LoadingWeather />;
+  if (isError) return <ErrorWeather />;
 
   return (
     <div>
+
+      {/* Weather Component */}
       <WeatherComp
         name={weather?.name}
         time={weather?.dt}
@@ -53,11 +71,23 @@ function Weather() {
 
 export default Weather;
 
-function LoadingWeather(){
+function LoadingWeather() {
   return (
-    <div className="flex items-center justify-center text-3xl h-screen w-screen ">
-      <h1>Loading Weather</h1>
-      <div></div>
+    <div className="flex items-center justify-center text-3xl h-screen w-screen">
+      <div className="flex flex-col items-center gap-4">
+        <h1>Loading Weather</h1>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    </div>
+  );
+}
+
+function ErrorWeather() {
+  return (
+    <div className="h-screen w-screen bg-pink-300 flex items-center justify-center">
+      <h2 className="text-3xl md:text-5xl text-white text-center px-4 font-semibold">
+        Oh no Something Brokeeeee My mistake
+      </h2>
     </div>
   );
 }
