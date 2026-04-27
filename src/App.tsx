@@ -2,7 +2,9 @@
 // import Home from "./pages/Home";
 // import mob_img from './assets/front_mob.jpg'
 // import desk_img from './assets/front_desk.jpg'
+import { useEffect, useState } from "react";
 import Weather from "./pages/Weather";
+import { useGeolocation } from "./utils/useGeolocation";
 // import WeatherComp from "./components/WeatherComp";
 
 // function App() {
@@ -69,11 +71,28 @@ import Weather from "./pages/Weather";
 
 
 function App() {
+  const [ cords,setCords  ]=useState({
+    lat:'',
+    lon:''
+  }) 
+ useEffect(()=>{
+  navigator.geolocation.getCurrentPosition((position)=>{
+    setCords({
+      lat:position.coords.latitude,
+      lon:position.coords.longitude
+    })
+  })
+ })
+  
   return (
     <div>
-      <Weather/>
+      {/* <Weather /> */}
+      <div>
+        <p>Latitude: {cords.lat}</p>
+        <p>Longitude :{cords.lon}</p>
+      </div>
     </div>
-  )
+  );
 }
 
 export default App
