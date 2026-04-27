@@ -3,8 +3,8 @@
 // import mob_img from './assets/front_mob.jpg'
 // import desk_img from './assets/front_desk.jpg'
 import { useEffect, useState } from "react";
-import Weather from "./pages/Weather";
-import { useGeolocation } from "./utils/useGeolocation";
+// import Weather from "./pages/Weather";
+// import { useGeolocation } from "./utils/useGeolocation";
 // import WeatherComp from "./components/WeatherComp";
 
 // function App() {
