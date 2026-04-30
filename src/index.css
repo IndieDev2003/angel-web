@@ -2,4 +2,14 @@
 @import 'tailwindcss';
 *{
   font-family: 'Outfit';
+
+  
+}
+
+.edit-notes label{
+  @apply text-white;
+}
+
+.edit-notes button{
+  @apply px-4 py-2 backdrop-blur-xs rounded-lg ;
 }
