@@ -2,54 +2,34 @@
 // import { Link, Route, Routes, useLocation } from "react-router-dom";
 // import Weather from "./pages/Weather";
 // import MessageBox from "./components/MessageBox";
-// import Notes from "./pages/Notes";
+import { useAuth } from "@clerk/react";
+import Auth from "./pages/Auth";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
+import Weather from "./pages/Weather";
+import User from "./pages/User";
 
 export default function App() {
-  // const url = useLocation()
+  const { isLoaded, isSignedIn } = useAuth();
 
-  // return (
-  // <div>
-  //   <Routes>
-  //     <Route path="/" element={<MessageBox />} />
-  //     <Route path="/message" element={<Home />} />
-  //     <Route path="/weather" element={<Weather />} />
-  //   </Routes>
+  if (!isLoaded)
+    return (
+      <>
+        <p>Loading Clerk...</p>
+      </>
+    );
 
-  //   {url.pathname !== "/" ? (
-  //     <div className="fixed right-4 top-4 border border-white/20 flex gap-2 items-center p-1 backdrop-blur-3xl justify-center bg-red-  z-100 rounded-full">
-  //       <Link
-  //         className="size-10 text-center bg-red-400/50 backdrop-blur-3xl text-white p-1.5 rounded-full"
-  //         to={"/"}
-  //       >
-  //         H
-  //       </Link>
-  //       <Link
-  //         className="size-10 text-center bg-fuchsia-400/50 backdrop-blur-3xl text-white p-1.5 rounded-full"
-  //         to={"/weather"}
-  //       >
-  //         W
-  //       </Link>
-  //       <Link
-  //         className="size-10 text-center bg-amber-400/50 backdrop-blur-3xl text-white p-1.5 rounded-full"
-  //         to={"/message"}
-  //       >
-  //         M
-  //       </Link>
-  //     </div>
-  //   ) : (
-  //     <></>
-  //   )}
-  // </div>;
-  // );
-
-  // return (
-    // <>
-      // <Notes />
-    // </>
-  // );
-  return(
-    <div className="h-screen w-screen flex items-center justify-center text-3xl">
-      <h2>Site Under Maintenance</h2>
-    </div>
-  )
+  if (!isSignedIn) return <Auth />;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/notes" element={<>Notes</>} />
+        <Route path="/user" element={<User />} />
+      </Routes>
+      <Navbar />
+    </>
+  );
 }

@@ -27,7 +27,7 @@ function Weather() {
         console.log("Location access denied or unavailable, using city name");
         setHasLocation(true);
       });
-  }, []);
+  });
 
   const {
     data: weather,

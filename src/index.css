@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-@import 'tailwindcss';
-*{
-  font-family: 'Outfit';
-
-  
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
+* {
+  font-family: "Outfit";
 }
 
-.edit-notes label{
+.edit-notes label {
   @apply text-white;
 }
 
-.edit-notes button{
-  @apply px-4 py-2 backdrop-blur-xs rounded-lg ;
+.edit-notes button {
+  @apply px-4 py-2 backdrop-blur-xs rounded-lg;
+}
+.cl-cardBox {
+  @apply !max-w-screen rounded-[0];
+}
+.cl-internal-1hqkstz {
+  @apply max-w-screen h-screen;
 }

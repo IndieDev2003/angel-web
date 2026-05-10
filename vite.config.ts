@@ -14,7 +14,7 @@ export default defineConfig({
         name: "Angel",
         short_name: "Angel",
         description: "An App For a Angel",
-        theme_color: "pink",
+        theme_color: "#0f172a",
         icons: [
           {
             src: "/icons/icon256.png",
@@ -32,17 +32,17 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         // runtimeCaching: [
-          // {
-            // urlPattern: /^https:\/\/api\./,
-            // handler: "NetworkFirst",
-            // options: {
-              // cacheName: "api-cache",
-              // expiration:{
-                // maxEntries:90,
-                // maxAgeSeconds:60*60*60 //One Day
-              // }
-            // },
-          // },
+        // {
+        // urlPattern: /^https:\/\/api\./,
+        // handler: "NetworkFirst",
+        // options: {
+        // cacheName: "api-cache",
+        // expiration:{
+        // maxEntries:90,
+        // maxAgeSeconds:60*60*60 //One Day
+        // }
+        // },
+        // },
         // ],
       },
     }),
