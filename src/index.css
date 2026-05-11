@@ -12,8 +12,8 @@
   @apply px-4 py-2 backdrop-blur-xs rounded-lg;
 }
 .cl-cardBox {
-  @apply !max-w-screen rounded-[0];
+  @apply !max-w-screen rounded-[0] bg-amber-400;
 }
-.cl-internal-1hqkstz {
-  @apply max-w-screen h-screen;
+.cl-internal-6z9ksr {
+  @apply max-w-screen h-[80vh] bg-amber-500;
 }

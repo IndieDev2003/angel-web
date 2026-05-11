@@ -1,20 +1,22 @@
 import { useClerk } from "@clerk/react";
+import { backgroundImg, logo } from "../assets";
 function Auth() {
-  const clerk=useClerk();
+  const clerk = useClerk();
   return (
     <div className="flex flex-col h-screen w-screen p-2 relative">
       {/* Background Image */}
-      {/* <div className="h-screen w-screen fixed inset-0 z-1 ">
-        <img
-          src={backImg}
-          className="object-cover w-full h-full"
-          alt="Auth Background"
-        />
-      </div> */}
+      <div className="fixed inset-0 z-10 h-screen w-screen">
+        <img src={backgroundImg} className="object-cover" alt="" />
+      </div>
 
       {/* Upper  */}
       <div className="h-screen z-10 flex flex-col gap-2 items-center">
-        <div className="h-8/10 border w-full "></div>
+        <div className="h-8/10  w-full flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center bg-pink-200/40 backdrop-blur-md p-5 rounded-xl">
+            <img src={logo} className="size-32 rounded-2xl" alt="" />
+            <p className="text-slate-900 text-xl">Angel</p>
+          </div>
+        </div>
         {/* Auth Buttons */}
         <div className="buttons w-full flex flex-col gap-2">
           <button

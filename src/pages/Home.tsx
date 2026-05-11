@@ -1,3 +1,4 @@
+import { backgroundImg } from "../assets";
 
 
 function Home() {
@@ -7,10 +8,12 @@ function Home() {
 
   return (
     <div className="relative">
-      
+      <div className="fixed inset-0 z-10 h-screen w-screen">
+        <img src={backgroundImg} className="object-cover" alt="" />
+      </div>
 
       {/* Main Content */}
-      <div className="bg-blend-soft-light flex items-center justify-center min-h-screen bg-black text-white relative overflow-hidden">
+      <div className="bg-blend-soft-light flex py-20 items-center justify-center min-h-[150vh] bg-black text-white relative overflow-hidden">
         
 
         <p className="z-20 p-2 max-w-2xl">

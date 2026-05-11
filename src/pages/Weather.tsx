@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchWeather, loadLocation } from "../utils/axios";
 import WeatherComp from "../components/WeatherComp";
 import { useEffect, useState } from "react";
+import { useUser } from "@clerk/react";
 
 type Cords = {
   lat: number | string;
@@ -9,9 +10,10 @@ type Cords = {
 };
 
 function Weather() {
+  const {user} = useUser()
   const [cords, setCords] = useState<Cords>({ lat: "", lon: "" });
   const [hasLocation, setHasLocation] = useState(false);
-  const [cityName] = useState("London"); // Default fallback city
+  const [cityName] = useState("Delhi"); // Default fallback city
 
   useEffect(() => {
     loadLocation()
@@ -24,14 +26,15 @@ function Weather() {
       })
       .catch(() => {
         // Location access denied, use city name instead
-        console.log("Location access denied or unavailable, using city name");
+        console.log("Location access denied or unavailable, using city name as Delhi");
         setHasLocation(true);
       });
   });
 
   const {
-    data: weather,
-    isLoading,
+    data: weather
+    ,
+    // isLoading,
     isError,
   } = useQuery({
     queryKey: ["weather", cords.lat, cords.lon, cityName],
@@ -46,7 +49,7 @@ function Weather() {
 
   
 
-  if (isLoading) return <LoadingWeather />;
+  if (!hasLocation) return <LoadingWeather />;
   if (isError) return <ErrorWeather />;
 
   return (
@@ -62,7 +65,7 @@ function Weather() {
         temp_max={weather?.main.temp}
         icon={weather?.weather[0].icon}
         greeting="Hello"
-        userName="@Alpha001"
+        userName={`${user?.fullName}`}
         main={weather?.weather[0].main}
       />
     </div>

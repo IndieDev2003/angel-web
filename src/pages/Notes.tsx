@@ -1,20 +1,16 @@
-import bgNotes from "../assets/notes.jpg";
-import EditNote from "../components/Notes/EditNote";
+import { backgroundImg } from '../assets';
 
 function Notes() {
   return (
-    <div>
-      <img
-        src={bgNotes}
-        alt="Notes Background"
-        className="fixed inset-0 -z-1 object-cover h-screen w-screen"
-      />
-
-      <div className="min-h-screen z-20 w-screen">
-        <EditNote />
+    <div className='relative'>
+      <div className="fixed z-1 h-screen w-screen">
+        <img src={backgroundImg} className="object-cover z-1" alt="" />
+      </div>
+      <div className='flex items-center justify-center text-4xl z-10 h-screen w-screen'>
+        <p>Notes</p>
       </div>
     </div>
   );
 }
 
-export default Notes;
+export default Notes

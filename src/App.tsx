@@ -9,15 +9,16 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Weather from "./pages/Weather";
 import User from "./pages/User";
+import Notes from "./pages/Notes";
 
 export default function App() {
   const { isLoaded, isSignedIn } = useAuth();
 
   if (!isLoaded)
     return (
-      <>
-        <p>Loading Clerk...</p>
-      </>
+      <div className="h-screen w-screen flex items-center justify-center text-3xl">
+        <p>Loading Auth.....</p>
+      </div>
     );
 
   if (!isSignedIn) return <Auth />;
@@ -26,7 +27,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/weather" element={<Weather />} />
-        <Route path="/notes" element={<>Notes</>} />
+        <Route path="/notes" element={<Notes/>} />
         <Route path="/user" element={<User />} />
       </Routes>
       <Navbar />

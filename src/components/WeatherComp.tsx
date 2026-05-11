@@ -1,3 +1,4 @@
+import { backgroundImg } from "../assets";
 
 
 interface IWeatherComp {
@@ -46,14 +47,13 @@ function WeatherComp({
 
   return (
     <div className="relative">
-      
+      <div className="fixed inset-0 z-10 h-screen w-screen">
+        <img src={backgroundImg} className="object-cover" alt="" />
+      </div>
 
       <div className="h-screen w-screen flex items-center justify-center relative">
-       
-      
-
         {/* Main Weather Card */}
-        <div className="w-scren md:w-78 h-120 md:h-110 text-white border border-white/40 flex justify-between flex-col p-4 z-20 bg-gray-800/10 backdrop-blur-xs">
+        <div className="w-scren md:w-78 h-120 md:h-110 text-white border border-white/40 flex justify-between flex-col p-4 z-20 bg-gray-800/10 backdrop-blur-md">
           {/* Header Section - City Name and Time */}
           <div>
             <h2 className="text-4xl font-bold">{name}</h2>

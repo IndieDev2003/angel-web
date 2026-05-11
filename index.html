@@ -11,9 +11,9 @@
       <h3>Loading Please Wait.....</h3>
       
     </div>
-    <!-- <script>
+    <script>
       function checkDevice() {
-        if (window.innerWidth < 1024) {
+        if (window.innerWidth > 720) {
           document.body.innerHTML = `
             <div style="
               display:flex;
@@ -25,9 +25,9 @@
               padding:20px;
             ">
               <div>
-                <h1>Desktop Only</h1>
-                <p>This experience is crafted for larger screens.<br>
-                Please open it on a laptop or desktop.</p>
+                <h1 class='text-6xl'>Mobile Only</h1>
+                <p>This experience is crafted for mobile screens.<br>
+                Please open it on a mobile or inspect mode.</p>
               </div>
             </div>
           `;
@@ -36,7 +36,7 @@
 
       checkDevice();
       window.addEventListener("resize", checkDevice);
-    </script> -->
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
