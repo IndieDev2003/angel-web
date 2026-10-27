@@ -1,38 +1,44 @@
+import crypto from "crypto";
 import Razorpay from "razorpay";
 
 export async function POST() {
   try {
-    if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    const keyId = process.env.RAZORPAY_KEY_ID;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+    if (!keyId || !keySecret) {
       return Response.json({
         success: true,
+        demo: true,
         orderId: "demo_order_123",
         amount: 1900,
         currency: "INR",
-        key: "demo",
-        message: "Demo mode enabled because Razorpay credentials are not configured.",
+        message: "Demo Razorpay order created because credentials are missing.",
       });
     }
 
     const razorpay = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET,
+      key_id: keyId,
+      key_secret: keySecret,
     });
 
     const order = await razorpay.orders.create({
       amount: 1900,
       currency: "INR",
-      receipt: "bandwise_pro_001",
+      receipt: `bandwise_pro_${Date.now()}`,
       payment_capture: 1,
     });
 
     return Response.json({
       success: true,
+      demo: false,
       orderId: order.id,
       amount: order.amount,
       currency: order.currency,
-      key: process.env.RAZORPAY_KEY_ID,
+      key: keyId,
     });
   } catch (error) {
-    return Response.json({ success: false, error: "Unable to create Razorpay order." }, { status: 500 });
+    console.error("Razorpay order creation failed:", error);
+    return Response.json({ success: false, error: "Unable to create Razorpay order" }, { status: 500 });
   }
 }

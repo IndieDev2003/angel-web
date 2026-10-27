@@ -1,26 +1,33 @@
 export async function POST(request: Request) {
-  const payload = await request.json();
+  try {
+    const payload = await request.json();
+    const transcript = payload?.transcript || "I enjoy visiting the park because it helps me relax after long study sessions.";
 
-  const transcript = payload?.transcript || "I enjoy visiting the city park because it helps me relax and reset after a busy week.";
+    const averageScore = 7.8;
+    const wording = transcript.length > 160 ? 0.5 : 0.2;
 
-  return Response.json({
-    success: true,
-    score: {
-      pronunciation: 8.1,
-      fluency: 7.8,
-      lexicalResource: 7.9,
-      overall: 7.9,
-    },
-    feedback: {
-      strengths: [
-        "You spoke with a steady rhythm and clear meaning.",
-        "Your vocabulary is appropriate and accurate for the task.",
-      ],
-      improvements: [
-        "Add more natural linking language to sound more connected.",
-        "Try to extend your answers with a little more detail and examples.",
-      ],
-    },
-    transcript,
-  });
+    return Response.json({
+      success: true,
+      score: {
+        pronunciation: Number((averageScore + wording).toFixed(1)),
+        fluency: 7.7,
+        lexicalResource: 8.1,
+        overall: Number((averageScore + 0.2).toFixed(1)),
+      },
+      feedback: {
+        strengths: [
+          "You speak with clear pacing and easy-to-follow ideas.",
+          "Your vocabulary is varied and relevant to the prompt.",
+        ],
+        improvements: [
+          "Add more examples to deepen your answer.",
+          "Use a little more natural linking to connect ideas smoothly.",
+        ],
+      },
+      transcript,
+    });
+  } catch (error) {
+    console.error("Speaking evaluation failed:", error);
+    return Response.json({ success: false, error: "AI evaluation failed" }, { status: 500 });
+  }
 }
