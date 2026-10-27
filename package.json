@@ -1,39 +1,36 @@
 {
-  "name": "angel-web",
+  "name": "bandwise",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/react": "^6.6.2",
-    "@clerk/ui": "^1.9.1",
-    "@tailwindcss/vite": "^4.2.4",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@supabase/supabase-js": "^2.48.1",
     "@tanstack/react-query": "^5.100.3",
-    "axios": "^1.15.2",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "react-router-dom": "^7.14.2",
-    "tailwindcss": "^4.2.4",
-    "vite-plugin-pwa": "^1.2.0"
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.21",
+    "framer-motion": "^12.0.1",
+    "lucide-react": "^0.469.0",
+    "next": "14.2.15",
+    "razorpay": "^2.9.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@tanstack/eslint-plugin-query": "^5.100.3",
-    "@types/node": "^25.6.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "^10.2.1",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.5.0",
-    "typescript": "~6.0.2",
-    "typescript-eslint": "^8.58.2",
-    "vite": "^8.0.10"
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
   }
 }
